@@ -13,10 +13,13 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
+          console.log("Missing credentials");
           return null;
         }
 
         try {
+          console.log("Attempting to authenticate user:", credentials.email);
+          
           const user = await prisma.user.findUnique({
             where: {
               email: credentials.email,
@@ -27,7 +30,13 @@ export const authOptions: NextAuthOptions = {
             },
           });
 
-          if (!user || !user.password) {
+          if (!user) {
+            console.log("User not found:", credentials.email);
+            return null;
+          }
+
+          if (!user.password) {
+            console.log("User has no password set:", credentials.email);
             return null;
           }
 
@@ -37,8 +46,11 @@ export const authOptions: NextAuthOptions = {
           );
 
           if (!isPasswordValid) {
+            console.log("Invalid password for user:", credentials.email);
             return null;
           }
+
+          console.log("Authentication successful for user:", credentials.email);
 
           // Update last login
           await prisma.user.update({
@@ -68,6 +80,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -97,6 +110,8 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/auth/login",
+    error: "/auth/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 }; 

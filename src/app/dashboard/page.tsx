@@ -2,7 +2,10 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
+import { analytics } from "@/lib/analytics";
+import { performanceUtils } from "@/lib/performance";
 import { 
   Users,
   Workflow,
@@ -21,6 +24,20 @@ import {
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+
+  // Track dashboard access and performance
+  useEffect(() => {
+    if (status === "authenticated") {
+      analytics.trackDashboardAccess("main_dashboard");
+      analytics.trackPageView("dashboard");
+      
+      // Track page load performance
+      const metrics = performanceUtils.trackPageLoad("dashboard");
+      if (metrics && performanceUtils.isSlowLoad(metrics.loadTime)) {
+        console.warn("Dashboard is loading slowly:", metrics.loadTime, "ms");
+      }
+    }
+  }, [status]);
 
   // Redirect if not authenticated
   if (status === "loading") {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, getCsrfToken } from "next-auth/react";
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -48,12 +49,15 @@ export default function LoginForm() {
 
       if (result?.error) {
         setError("Invalid email or password");
+        analytics.trackError("login_failed", "invalid_credentials");
       } else {
-        // Successful login - redirect to dashboard
+        // Successful login - track and redirect to dashboard
+        analytics.trackLogin("credentials");
         router.push("/dashboard");
       }
-    } catch {
+    } catch (error) {
       setError("An error occurred during sign in");
+      analytics.trackError("login_error", "network_error");
     } finally {
       setIsLoading(false);
     }
