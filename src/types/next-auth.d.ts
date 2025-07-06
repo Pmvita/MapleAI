@@ -8,9 +8,9 @@ declare module "next-auth" {
       firstName: string;
       lastName: string;
       role: string;
-      companyId: string;
-      company: Company;
-      subscription: Subscription;
+      companyId: string | null;
+      company: Company | null;
+      subscription: Subscription | null;
     } & DefaultSession["user"];
   }
 
@@ -19,9 +19,9 @@ declare module "next-auth" {
     firstName: string;
     lastName: string;
     role: string;
-    companyId: string;
-    company: Company;
-    subscription: Subscription;
+    companyId: string | null;
+    company: Company | null;
+    subscription: Subscription | null;
   }
 }
 
@@ -31,8 +31,8 @@ declare module "next-auth/jwt" {
     firstName: string;
     lastName: string;
     role: string;
-    companyId: string;
-    company: Company;
-    subscription: Subscription;
+    companyId: string | null;
+    company: Company | null;
+    subscription: Subscription | null;
   }
 } 
