@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, getCsrfToken } from "next-auth/react";
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from "lucide-react";
 
 export default function LoginForm() {
@@ -17,12 +17,20 @@ export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [csrfToken, setCsrfToken] = useState("");
 
   useEffect(() => {
     const messageParam = searchParams.get("message");
     if (messageParam) {
       setMessage(messageParam);
     }
+    
+    // Get CSRF token
+    getCsrfToken().then((token) => {
+      if (token) {
+        setCsrfToken(token);
+      }
+    });
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,6 +43,7 @@ export default function LoginForm() {
         email: formData.email,
         password: formData.password,
         redirect: false,
+        csrfToken: csrfToken,
       });
 
       if (result?.error) {
@@ -204,12 +213,12 @@ export default function LoginForm() {
 
           {/* Sign Up Link */}
           <div className="text-center">
-                          <p className="text-sm text-gray-600">
-                Don&apos;t have an account?{" "}
-                <Link href="/auth/register" className="font-medium text-blue-600 hover:text-blue-500">
-                  Sign up
-                </Link>
-              </p>
+            <p className="text-sm text-gray-600">
+              Don&apos;t have an account?{" "}
+              <Link href="/auth/register" className="font-medium text-blue-600 hover:text-blue-500">
+                Sign up
+              </Link>
+            </p>
           </div>
         </form>
       </div>
