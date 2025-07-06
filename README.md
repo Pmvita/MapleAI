@@ -50,7 +50,7 @@ MapleAI is a comprehensive AI-powered SaaS platform designed for enterprise-grad
 
 ## 📚 Documentation Hub
 
-### 📋 [Test User Credentials](docs/credentials.md)**
+### 📋 [Test User Credentials](docs/credentials.md)
 
 ### 🏗️ [Architecture & Technical](/docs/architecture/)
 - [System Architecture](/docs/architecture/system-architecture.md)
