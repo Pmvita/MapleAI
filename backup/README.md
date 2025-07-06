@@ -50,8 +50,6 @@ MapleAI is a comprehensive AI-powered SaaS platform designed for enterprise-grad
 
 ## 📚 Documentation Hub
 
-### 📋 [Test User Credentials](docs/credentials.md)**
-
 ### 🏗️ [Architecture & Technical](/docs/architecture/)
 - [System Architecture](/docs/architecture/system-architecture.md)
 - [Next.js Implementation](/docs/architecture/nextjs-implementation.md)
@@ -327,22 +325,4 @@ This project is proprietary software owned by MapleAI Holdings.
 
 **Built with ❤️ by the MapleAI Team**
 
-*For more information, visit [mapleai.com](https://mapleai.com)*
-
----
-
-## Features
-- Financial compliance (KYC, AML, sanctions)
-- HR/PeopleOps automation
-- Workflow orchestration
-- Predictive analytics
-
-## Tech Stack
-- Next.js 15.3.5
-- PostgreSQL + Prisma ORM
-- NextAuth.js
-- Tailwind CSS
-- Turbopack
-
-## Getting Started
-... 
+*For more information, visit [mapleai.com](https://mapleai.com)* 

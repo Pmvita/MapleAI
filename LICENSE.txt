@@ -1,0 +1,37 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Copyright (c) [YEAR] [AUTHOR NAME]. All rights reserved.
+
+This software and associated documentation files (the "Software") are the proprietary and confidential information of [AUTHOR NAME] ("Licensor"). The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.
+
+LICENSE GRANT
+Subject to the terms and conditions of this License, Licensor hereby grants to you a limited, non-exclusive, non-transferable, non-sublicensable license to use the Software solely for your internal business purposes.
+
+RESTRICTIONS
+You are strictly prohibited from:
+(a) Modifying, adapting, altering, translating, or creating derivative works of the Software;
+(b) Reverse engineering, disassembling, decompiling, or otherwise attempting to derive the source code of the Software;
+(c) Redistributing, sublicensing, leasing, renting, lending, or otherwise making the Software available to any third party;
+(d) Incorporating the Software into any commercial product, service, or application without express written permission from Licensor;
+(e) Removing or modifying any proprietary notices, labels, or marks on the Software;
+(f) Using the Software for any unlawful purpose or in violation of any applicable laws or regulations.
+
+PROPRIETARY RIGHTS
+The Software is not open source software. All rights, title, and interest in and to the Software, including all intellectual property rights, are and will remain the exclusive property of Licensor. This License does not grant you any rights to trademarks, service marks, or trade names of Licensor.
+
+ENFORCEMENT
+Any violation of this License may result in civil and criminal penalties, including but not limited to injunctive relief, monetary damages, and prosecution under applicable laws. Licensor reserves the right to pursue all available legal and equitable remedies for any breach of this License.
+
+DISCLAIMER OF WARRANTIES
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+LIMITATION OF LIABILITY
+IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE SOFTWARE.
+
+TERMINATION
+This License is effective until terminated. Your rights under this License will terminate automatically without notice if you fail to comply with any of its terms and conditions.
+
+GOVERNING LAW
+This License shall be governed by and construed in accordance with the laws of [JURISDICTION], without regard to its conflict of laws principles.
+
+For licensing inquiries, contact: Petermvita@hotmail.com 

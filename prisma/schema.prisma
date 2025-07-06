@@ -1,0 +1,219 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  firstName     String
+  lastName      String
+  password      String
+  role          UserRole  @default(USER)
+  isActive      Boolean   @default(true)
+  emailVerified DateTime?
+  image         String?
+  
+  // Company relationship
+  companyId     String?
+  company       Company?  @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  
+  // Subscription relationship
+  subscriptionId String?
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Audit fields
+  lastLoginAt   DateTime?
+  loginCount    Int       @default(0)
+  
+  // Profile fields
+  phone         String?
+  jobTitle      String?
+  department    String?
+  
+  // Security
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret  String?
+  
+  @@map("users")
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  industry    String?
+  size        CompanySize?
+  website     String?
+  logo        String?
+  isActive    Boolean  @default(true)
+  
+  // Address
+  address     String?
+  city        String?
+  state       String?
+  country     String?
+  zipCode     String?
+  
+  // Contact
+  phone       String?
+  email       String?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  users       User[]
+  subscriptions Subscription[]
+  complianceRecords ComplianceRecord[]
+  
+  // Compliance
+  complianceScore Float? @default(0)
+  lastComplianceCheck DateTime?
+  
+  @@map("companies")
+}
+
+model Subscription {
+  id          String   @id @default(cuid())
+  plan        PlanType
+  status      SubscriptionStatus @default(ACTIVE)
+  startDate   DateTime @default(now())
+  endDate     DateTime?
+  
+  // Pricing
+  amount      Float
+  currency    String   @default("USD")
+  billingCycle BillingCycle @default(MONTHLY)
+  
+  // Limits
+  maxUsers    Int?
+  maxStorage  Int? // in GB
+  maxApiCalls Int?
+  
+  // Features
+  features    Json? // Store enabled features as JSON
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  users       User[]
+  
+  // Billing
+  stripeCustomerId String?
+  stripeSubscriptionId String?
+  
+  @@map("subscriptions")
+}
+
+model ComplianceRecord {
+  id          String   @id @default(cuid())
+  type        ComplianceType
+  status      ComplianceStatus
+  score       Float?
+  details     Json?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  
+  // Audit
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  
+  @@map("compliance_records")
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String
+  entityType  String
+  entityId    String
+  userId      String?
+  userEmail   String?
+  details     Json?
+  ipAddress   String?
+  userAgent   String?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  
+  @@map("audit_logs")
+}
+
+// Enums
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+  VIEWER
+}
+
+enum CompanySize {
+  SMALL_1_10
+  MEDIUM_11_50
+  LARGE_51_200
+  ENTERPRISE_201_500
+  CORPORATE_501_1000
+  GLOBAL_1000_PLUS
+}
+
+enum PlanType {
+  STARTER
+  PROFESSIONAL
+  ENTERPRISE
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  CANCELLED
+  PENDING
+}
+
+enum BillingCycle {
+  MONTHLY
+  QUARTERLY
+  ANNUALLY
+}
+
+enum ComplianceType {
+  AML
+  KYC
+  SANCTIONS
+  GDPR
+  HIPAA
+  SOC2
+  ISO27001
+}
+
+enum ComplianceStatus {
+  PASSED
+  FAILED
+  PENDING
+  REVIEW_REQUIRED
+}
