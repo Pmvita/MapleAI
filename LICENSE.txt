@@ -1,8 +1,8 @@
 PROPRIETARY SOFTWARE LICENSE
 
-Copyright (c) [YEAR] [AUTHOR NAME]. All rights reserved.
+Copyright (c) 2025 Pierre Mvita. All rights reserved.
 
-This software and associated documentation files (the "Software") are the proprietary and confidential information of [AUTHOR NAME] ("Licensor"). The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.
+This software and associated documentation files (the "Software") are the proprietary and confidential information of Pierre Mvita ("Licensor"). The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.
 
 LICENSE GRANT
 Subject to the terms and conditions of this License, Licensor hereby grants to you a limited, non-exclusive, non-transferable, non-sublicensable license to use the Software solely for your internal business purposes.
@@ -32,6 +32,6 @@ TERMINATION
 This License is effective until terminated. Your rights under this License will terminate automatically without notice if you fail to comply with any of its terms and conditions.
 
 GOVERNING LAW
-This License shall be governed by and construed in accordance with the laws of [JURISDICTION], without regard to its conflict of laws principles.
+This License shall be governed by and construed in accordance with the laws of the Province of Ontario, without regard to its conflict of laws principles.
 
 For licensing inquiries, contact: Petermvita@hotmail.com 
