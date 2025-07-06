@@ -48,7 +48,7 @@ MapleAI is a comprehensive AI-powered SaaS platform designed for enterprise-grad
 - **🔒 LLM Infrastructure & Governance**: Private LLM deployment, role-based access, model monitoring
 - **🌍 Sovereign AI & Regulatory Edge**: Model explainability, regional compliance, regulatory sandbox
 
-## 📚 Documentation Hub
+## 📚 Documentation Hub 
 
 ### 📋 [Test User Credentials](docs/credentials.md)
 
