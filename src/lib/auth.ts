@@ -1,7 +1,16 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
+import { validateEnv } from "./env";
 import bcrypt from "bcryptjs";
+
+// Validate environment variables on startup
+try {
+  validateEnv();
+} catch (error) {
+  console.error('❌ Environment validation failed:', error);
+  throw error;
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -19,6 +28,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           console.log("Attempting to authenticate user:", credentials.email);
+          console.log("Database URL:", process.env.DATABASE_URL?.substring(0, 50) + "...");
           
           const user = await prisma.user.findUnique({
             where: {
