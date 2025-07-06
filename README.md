@@ -1,4 +1,4 @@
-# 🤖 MapleAI - AI-Powered Enterprise SaaS Platform
+# 🤖 MapleAI - AI-Powered Enterprise SaaS Platform 
 
 > **Next.js & Vercel-Capable AI SaaS for Financial Compliance, HR Automation, and Enterprise Workflow Orchestration**
 
